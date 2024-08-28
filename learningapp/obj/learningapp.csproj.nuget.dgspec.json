@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Udemy\\learning-azure-204\\learningapp\\learningapp.csproj": {}
+    "C:\\Udemy\\azure204\\learning-azure-204\\learningapp\\learningapp.csproj": {}
   },
   "projects": {
-    "C:\\Udemy\\learning-azure-204\\learningapp\\learningapp.csproj": {
+    "C:\\Udemy\\azure204\\learning-azure-204\\learningapp\\learningapp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Udemy\\learning-azure-204\\learningapp\\learningapp.csproj",
+        "projectUniqueName": "C:\\Udemy\\azure204\\learning-azure-204\\learningapp\\learningapp.csproj",
         "projectName": "learningapp",
-        "projectPath": "C:\\Udemy\\learning-azure-204\\learningapp\\learningapp.csproj",
+        "projectPath": "C:\\Udemy\\azure204\\learning-azure-204\\learningapp\\learningapp.csproj",
         "packagesPath": "C:\\Users\\MotivDesktop1\\.nuget\\packages\\",
-        "outputPath": "C:\\Udemy\\learning-azure-204\\learningapp\\obj\\",
+        "outputPath": "C:\\Udemy\\azure204\\learning-azure-204\\learningapp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MotivDesktop1\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,20 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Azure.AppConfiguration.AspNetCore": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

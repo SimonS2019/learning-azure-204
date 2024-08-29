@@ -1,8 +1,7 @@
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.SqlClient;
-using Newtonsoft.Json;
+using MySql.Data.MySqlClient;
+
 
 namespace learningapp.Pages;
 
@@ -17,17 +16,23 @@ public class IndexModel : PageModel
         _configuration=configuration;
     }
 
-    public async Task<IActionResult> OnGet()
+    public void OnGet()
     {
        
-        string functionURL="https://appfunctiontestsimonshen.azurewebsites.net/api/appFunction";
-        using(HttpClient client=new HttpClient())
-        {
-            HttpResponseMessage response= await client.GetAsync(functionURL);
-            string content= await response.Content.ReadAsStringAsync();
-            Courses=JsonConvert.DeserializeObject<List<Course>>(content);
-            return Page();
-        }       
-        
+        string connectionString = _configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")!;
+        var sqlConnection = new MySqlConnection(connectionString);
+        sqlConnection.Open();
+
+        var sqlcommand = new MySqlCommand(
+        "SELECT CourseID,CourseName,Rating FROM Course;",sqlConnection);
+         using (MySqlDataReader sqlDatareader = sqlcommand.ExecuteReader())
+         {
+             while (sqlDatareader.Read())
+                {
+                    Courses.Add(new Course() {CourseID=Int32.Parse(sqlDatareader["CourseID"].ToString()),
+                    CourseName=sqlDatareader["CourseName"].ToString(),
+                    Rating=Decimal.Parse(sqlDatareader["Rating"].ToString())});
+                }
+         }
     }
 }
